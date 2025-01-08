@@ -14,23 +14,24 @@ void printVec(vector<int> &v)
 
 int main()
 {
-    vector<int> v[10]; // it creates 10 vectors of size 0
-
     int N;
     cin >> N;
-    vector<int> v1[N];
+    vector<vector<int>> v1;
     for (int i = 0; i < N; i++)
     {
         int n;
         cin >> n;
+        vector<int> temp;
         for (int j = 0; j < n; j++)
         {
             int x;
             cin >> x;
-            v1[i].push_back(x);
+            temp.push_back(x);   
         }
+        v1.push_back(temp);
     }
-
+    v1[0].push_back(10); //v1[0] is a vector
+    v1.push_back(vector<int> ());   //adding a empty vector which can be visualized as a row
     // printing
     for (int i = 0; i < N; i++)
     {
