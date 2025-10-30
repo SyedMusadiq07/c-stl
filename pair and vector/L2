@@ -1,0 +1,139 @@
+1️⃣ Create a Remote Repository
+
+Go to GitHub → New repository
+
+Name it: merge-demo
+
+Keep it public and check Add a README file
+
+Click Create repository
+
+💡 This is your main (original) repository.
+
+2️⃣ Fork the Repository
+
+On the same repo page, click Fork → Create fork
+
+It creates your own copy of that repo.
+
+💡 Fork = make your own copy of someone else’s repo to work independently.
+
+3️⃣ Clone your fork to your computer
+git clone https://github.com/<your-username>/merge-demo.git
+
+
+💬 Downloads your forked repo to your computer.
+
+Then go inside that folder:
+
+cd merge-demo
+
+4️⃣ Create a new branch (feature branch)
+git checkout -b feature-branch
+
+
+💬 Creates a new branch named “feature-branch” and switches to it.
+
+5️⃣ Add a new file manually
+
+📁 Use your mouse → open folder → right-click → New Text Document
+Name it: index.txt
+Type something like:
+
+This is content from the feature branch
+
+
+and save.
+
+6️⃣ Add and commit changes
+git add .
+git commit -m "Added index.txt from feature branch"
+
+
+💬 Stages your new file and commits it to your branch history.
+
+7️⃣ Push this branch to your fork
+git push origin feature-branch
+
+
+💬 Uploads your branch from local computer to your fork on GitHub.
+
+8️⃣ Create a Pull Request (PR)
+
+Go to your forked repo on GitHub.
+
+Click Compare & pull request → Target: original repo’s main branch.
+
+Add title: “Added new file” → Click Create pull request
+
+💬 Pull Request asks the original repo owner to merge your changes.
+
+9️⃣ (To create merge conflict for demo)
+
+Now we’ll create a small conflict scenario.
+
+Go back to your local main branch:
+
+git checkout main
+
+
+Open the same index.txt manually and change something like:
+
+This line is from main branch
+
+
+Save the file.
+
+Then:
+
+git add .
+git commit -m "Edited index.txt from main branch"
+git push origin main
+
+
+💬 Now both main and feature-branch have edited the same file differently.
+
+🔟 Try to merge feature branch into main
+git merge feature-branch
+
+
+💬 If you changed the same lines in both files, you’ll see a message:
+
+CONFLICT (content): Merge conflict in index.txt
+
+
+✅ This means Git doesn’t know which version to keep.
+
+1️⃣1️⃣ Resolve the Merge Conflict
+
+Open index.txt → You’ll see:
+
+<<<<<<< HEAD
+This line is from main branch
+=======
+This line is from feature branch
+>>>>>>> feature-branch
+
+
+Manually edit it to:
+
+This line is from main branch
+This line is from feature branch
+
+
+Save the file.
+
+Then:
+
+git add index.txt
+git commit -m "Resolved merge conflict between main and feature branch"
+git push origin main
+
+
+💬 You manually resolved the conflict and finalized the merge.
+
+1️⃣2️⃣ Use git diff to show differences
+git diff main feature-branch
+
+
+💬 Shows line-by-line differences between branches.
